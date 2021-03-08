@@ -1,11 +1,11 @@
 /*
 	dispatcher.h - header file for the Dispatcher class.
-	
+
 	Revision 0
-	
+
 	Notes:
-			- 
-			
+			-
+
 	2016/11/19, Maya Posch
 	(c) Nyanko.ws.
 */
@@ -33,7 +33,7 @@ class Dispatcher {
 	static mutex workersMutex;
 	static vector<Worker*> allWorkers;
 	static vector<thread*> threads;
-	
+
 public:
 	static bool init(int workers);
 	static bool stop();

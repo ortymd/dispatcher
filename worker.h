@@ -1,11 +1,11 @@
 /*
 	worker.h - Header file for the Worker class.
-	
+
 	Revision 0
-	
+
 	Notes:
-			- 
-			
+			-
+
 	2016/11/19, Maya Posch
 	(c) Nyanko.ws
 */
@@ -30,7 +30,7 @@ class Worker {
 	AbstractRequest* request;
 	bool running;
 	bool ready;
-	
+
 public:
 	Worker() { running = true; ready = false; ulock = unique_lock<mutex>(mtx); }
 	void run();

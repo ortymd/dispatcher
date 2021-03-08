@@ -1,14 +1,14 @@
 /*
 	dispatcher.cpp - Implementation of the Dispatcher class.
-	
+
 	Revision 0
-	
+
 	Features:
-			- 
-			
+			-
+
 	Notes:
-			- 
-			
+			-
+
 	2016/11/19, Maya Posch
 	(c) Nyanko.ws
 */
@@ -40,7 +40,7 @@ bool Dispatcher::init(int workers) {
 		t = new thread(&Worker::run, w);
 		threads.push_back(t);
 	}
-	
+
 	return true;
 }
 
@@ -51,15 +51,15 @@ bool Dispatcher::stop() {
 	for (int i = 0; i < allWorkers.size(); ++i) {
 		allWorkers[i]->stop();
 	}
-	
+
 	cout << "Stopped workers.\n";
-	
+
 	for (int j = 0; j < threads.size(); ++j) {
 		threads[j]->join();
-		
+
 		cout << "Joined threads.\n";
 	}
-	
+
 	return true;
 }
 
@@ -84,8 +84,8 @@ void Dispatcher::addRequest(AbstractRequest* request) {
 		requests.push(request);
 		requestsMutex.unlock();
 	}
-	
-	
+
+
 }
 
 
@@ -110,6 +110,6 @@ bool Dispatcher::addWorker(Worker* worker) {
 		workers.push(worker);
 		workersMutex.unlock();
 	}
-	
+
 	return wait;
 }
