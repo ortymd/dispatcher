@@ -27,18 +27,18 @@ using namespace std;
 
 
 class Dispatcher {
-	static queue<AbstractRequest*> requests;
-	static queue<Worker*> workers;
+	static queue<unique_ptr<AbstractRequest>> requests;
+	static queue<shared_ptr<Worker>> workers;
 	static mutex requestsMutex;
 	static mutex workersMutex;
-	static vector<Worker*> allWorkers;
-	static vector<thread*> threads;
-
+	static vector<shared_ptr<Worker>> allWorkers;
+	static vector<unique_ptr<thread>> threads;
+	
 public:
 	static bool init(int workers);
 	static bool stop();
-	static void addRequest(AbstractRequest* request);
-	static bool addWorker(Worker* worker);
+	static void addRequest(unique_ptr<AbstractRequest> request);
+	static bool addWorker(shared_ptr<Worker> worker);
 };
 
 #endif

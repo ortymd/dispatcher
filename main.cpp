@@ -22,6 +22,7 @@
 #include <csignal>
 #include <thread>
 #include <chrono>
+#include <memory>
 
 using namespace std;
 
@@ -55,12 +56,14 @@ int main() {
 	// Generate requests in a continuous loop until terminated with SIGINT or
 	// limit has been reached.
 	int cycles = 0;
-	Request* rq = 0;
+	//Request* rq = 0;
+	unique_ptr<Request> rq;
 	while (!signal_caught && cycles < 50) {
-		rq = new Request();
+		//rq = new Request();
+		rq = make_unique<Request>();
 		rq->setValue(cycles);
 		rq->setOutput(&logFnc);
-		Dispatcher::addRequest(rq);
+		Dispatcher::addRequest(move(rq));
 		cycles++;
 	}
 
