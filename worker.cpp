@@ -40,7 +40,7 @@ void Worker::run() {
 		}
 
 		// Add self to Dispatcher queue and execute next request or wait.
-		if (Dispatcher::addWorker(this)) {
+		if (Dispatcher::addWorker(shared_from_this())) {
 			// Use the ready loop to deal with spurious wake-ups.
 			while (!ready && running) {
 				if (cv.wait_for(ulock, chrono::seconds(1)) == cv_status::timeout) {
