@@ -66,8 +66,6 @@ int main() {
 		cycles++;
 	}
 
-	this_thread::sleep_for(chrono::seconds(5));
-
 	// Cleanup.
 	Dispatcher::stop();
 	cout << "Clean-up done.\n";
